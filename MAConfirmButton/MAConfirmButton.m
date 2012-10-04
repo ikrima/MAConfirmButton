@@ -124,10 +124,14 @@
             self.titleLabel.shadowOffset = CGSizeMake(0, 1);
             size = [disabled sizeWithFont:[UIFont boldSystemFontOfSize:kFontSize]];
         }else if(selected){
-            [self setTitle:confirm forState:UIControlStateNormal];		
+            [self setTitle:confirm forState:UIControlStateNormal];
+            [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [self setTitleShadowColor:[UIColor colorWithWhite:0 alpha:0.5] forState:UIControlStateNormal];
             size = [confirm sizeWithFont:[UIFont boldSystemFontOfSize:kFontSize]];
         }else{
             [self setTitle:title forState:UIControlStateNormal];
+            [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [self setTitleShadowColor:[UIColor colorWithWhite:0 alpha:0.5] forState:UIControlStateNormal];
             size = [title sizeWithFont:[UIFont boldSystemFontOfSize:kFontSize]];
         }
 
@@ -256,11 +260,13 @@
 
 - (void)setSelected:(BOOL)s{	
     selected = s;
+    confirmed = NO;
+    self.disabled = nil;
     [self toggle];
 }
 
 - (void)disableWithTitle:(NSString *)disabledString{
-    self.disabled = [disabledString retain];    
+    self.disabled = [disabledString retain];
     [self toggle];	
 }
 
